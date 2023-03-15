@@ -1,24 +1,69 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import ResponsiveAppBar from './Base/nav';
+import Askquestion from './components/askquestion';
+import DoubtPage from './components/DoubtPage';
+import SignInSide from './components/login';
+import SignUp from './components/register';
+
 
 function App() {
+
+const[doubt, setDoubt]= useState([])
+const[answer, setAnswer]= useState([])
+const token = localStorage.getItem('react_token')
+useEffect(()=>{
+const getDoubts = async()=>{
+  try {
+    const response = await fetch('https://stackoverflow-clone-backend-pi.vercel.app/questions',{
+      method:"GET",
+      headers:{
+        "content-type":"application/json",
+        "x-auth-token": token
+      }
+    })
+    const data = await response.json()
+setDoubt(data);
+console.log(data);
+  } catch (error) {
+    console.log(error)
+  }
+}
+getDoubts();
+},[])
+
+//==================================================================================
+
+
+  //==================================================================================
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <div>
+<Switch>
+  <Route exact path="/">
+    <SignInSide />
+  </Route>
+  <Route path="/signup">
+    <SignUp />
+  </Route>
+  <Route path="/doubts">
+    <DoubtPage
+    doubt={doubt} 
+    setDoubt={setDoubt}
+    
+    />
+  </Route>
+  <Route path="/addquestion">
+    <Askquestion
+    doubt={doubt} 
+    setDoubt={setDoubt}
+    
+    />
+  </Route>
+</Switch>
+   </div>
   );
 }
 
