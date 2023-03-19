@@ -1,38 +1,35 @@
-.App {
+#doubtpage{
   text-align: center;
+  
+
+}
+#card-sec{
+display: grid;
+gap: 1rem;
+}
+#answer-box{
+  border: 3px solid #252525;
+  min-height: 5cm;
+  min-width: 20cm;
+  padding: 1cm;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#doubtpagecard{
+  background-color: whitesmoke;
+}
+#addanswerbtn{
+  background-color: #252525;
+  color: orange;
+  max-width: fit-content;
+  margin-top: 1rem !important;
+margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#addanswerbtn:hover{
+  background-color: orange;
+  color: #252525;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#answer-sec{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

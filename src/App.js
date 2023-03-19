@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import ResponsiveAppBar from './Base/nav';
+import Answers from './components/answer';
 import Askquestion from './components/askquestion';
 import DoubtPage from './components/DoubtPage';
 import SignInSide from './components/login';
@@ -61,6 +62,9 @@ getDoubts();
     setDoubt={setDoubt}
     
     />
+  </Route>
+  <Route path="/answers">
+    <Answers />
   </Route>
 </Switch>
    </div>
