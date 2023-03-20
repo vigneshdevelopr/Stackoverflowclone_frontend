@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextareaAutosize, TextField } from '@mui/material';
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import Base from '../Base/base';
@@ -83,10 +83,9 @@ function Askquestion({doubt, setDoubt}) {
           name='topic'
           value={topic}
           onChange={handleChange("topic")}
-        />
-        <TextField
-          required
-          id="outlined-required"
+        /><br/>
+        <TextareaAutosize
+          id='answer-box'
           label="Questions"
           name='questions'
           value={questions}

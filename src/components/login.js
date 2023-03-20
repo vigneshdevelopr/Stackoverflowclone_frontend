@@ -103,27 +103,28 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://i1.sndcdn.com/avatars-000708374642-k6d7gm-t500x500.jpg)",
+            backgroundImage: "url(https://images.pexels.com/photos/7107485/pexels-photo-7107485.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
                 ? t.palette.grey[50]
                 : t.palette.grey[900],
-            backgroundSize: "cover",
+            backgroundSize:"cover",
             backgroundPosition: "center",
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid style={{backgroundColor:'rgb(227, 182, 110)'}} item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
               my: 8,
               mx: 4,
               display: "flex",
+              color:'#FFFFFF',
               flexDirection: "column",
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <Avatar sx={{ m: 1, bgcolor: "rgb(227, 182, 110)" }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">

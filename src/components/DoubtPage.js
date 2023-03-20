@@ -13,6 +13,9 @@ import { useHistory } from "react-router-dom";
 import Base from "../Base/base";
 
 function DoubtPage({ doubt, setDoubt }) {
+  console.log(doubt)
+
+
   const history = useHistory();
   const bull = (
     <Box
@@ -27,6 +30,7 @@ function DoubtPage({ doubt, setDoubt }) {
     
 
   };
+ 
 
   return (
     <div>
@@ -44,7 +48,9 @@ function DoubtPage({ doubt, setDoubt }) {
               </Button>
 <Grid id="card-sec" >
               {doubt?.map((data, id) => (
+                
                 <Card id="doubtpagecard" sx={{ minWidth: 275 }} key={data._id}>
+                  
                   <CardContent>
                     <Typography
                       sx={{ fontSize: 14 }}
@@ -63,7 +69,7 @@ function DoubtPage({ doubt, setDoubt }) {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button onClick={()=>history.push('answers')} variant="contained" size="small">
+                    <Button onClick={()=>history.push(`/answers/${id}`)} variant="contained" size="small">
                       View Answer
                     </Button>
                   </CardActions>

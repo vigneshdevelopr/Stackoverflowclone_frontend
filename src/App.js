@@ -34,7 +34,26 @@ console.log(data);
 getDoubts();
 },[])
 
-//==================================================================================
+//====================Get Answer==============================================================
+useEffect(()=>{
+  const getAnswer = async()=>{
+    try {
+      const response = await fetch('https://stackoverflow-clone-backend-pi.vercel.app/answers/:questionId',{
+        method:'GET',
+        headers:{
+          "content-type": "application/json",
+          "x-auth-token": token
+        }
+      })
+      const data = await response.json()
+      setAnswer(data);
+      console.log(data);
+    } catch (error) {
+     console.log(error.message); 
+    }
+  }
+  getAnswer();
+},[])
 
 
   //==================================================================================
@@ -63,8 +82,11 @@ getDoubts();
     
     />
   </Route>
-  <Route path="/answers">
-    <Answers />
+  <Route path="/answers/:id">
+    <Answers
+    
+    doubt={doubt} 
+    setDoubt={setDoubt}    />
   </Route>
 </Switch>
    </div>

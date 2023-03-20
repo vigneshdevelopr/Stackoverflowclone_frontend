@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -22,7 +22,31 @@ function ResponsiveAppBar() {
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+const[doubt, setDoubt]=useState([])
+const token = localStorage.getItem('react_token')
 
+useEffect(()=>{
+  const getDoubts = async()=>{
+    try {
+      const response = await fetch('https://stackoverflow-clone-backend-pi.vercel.app/questions',{
+        method:"GET",
+        headers:{
+          "content-type":"application/json",
+          "x-auth-token": token
+        }
+      })
+      const data = await response.json()
+  setDoubt(data);
+  console.log(data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  getDoubts();
+  },[])
+
+  
+  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -62,137 +86,140 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar sx={{border:'1px solid red', backgroundColor:'orange', color:'black'}} position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            StackOverFlow
-          </Typography>
+    <div>
+ <AppBar sx={{ backgroundColor:'orange', color:'black'}} position="static">
+ <Container maxWidth="xl">
+   <Toolbar disableGutters>
+     <Typography
+       variant="h6"
+       noWrap
+       component="a"
+       href="/"
+       sx={{
+         mr: 2,
+         display: { xs: "none", md: "flex" },
+         fontFamily: "monospace",
+         fontWeight: 700,
+         letterSpacing: ".3rem",
+         color: "inherit",
+         textDecoration: "none",
+       }}
+     >
+       StackOverFlow
+     </Typography>
 
-          <Box sx={{ flexGrow: 1,color:'black', display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+     <Box sx={{ flexGrow: 1,color:'black', display: { xs: "flex", md: "none" } }}>
+       <IconButton
+         size="large"
+         aria-label="account of current user"
+         aria-controls="menu-appbar"
+         aria-haspopup="true"
+         onClick={handleOpenNavMenu}
+         color="inherit"
+       >
 <StackLogo />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-                color:'black'
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={
-                  page==="Doubts"?doubts:
-                  
-                  handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            StackOverFlow
-          </Typography>
-          <Box sx={{ flexGrow: 1,color:'black', display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={
-                  page==="Doubts"?doubts:
+       </IconButton>
+       <Menu
+         id="menu-appbar"
+         anchorEl={anchorElNav}
+         anchorOrigin={{
+           vertical: "bottom",
+           horizontal: "left",
+         }}
+         keepMounted
+         transformOrigin={{
+           vertical: "top",
+           horizontal: "left",
+         }}
+         open={Boolean(anchorElNav)}
+         onClose={handleCloseNavMenu}
+         sx={{
+           display: { xs: "block", md: "none" },
+           color:'black'
+         }}
+       >
+         {pages.map((page) => (
+           <MenuItem key={page} onClick={
+             page==="Doubts"?doubts:
+             
+             handleCloseNavMenu}>
+             <Typography textAlign="center">{page}</Typography>
+           </MenuItem>
+         ))}
+       </Menu>
+     </Box>
+     <Typography
+       variant="h5"
+       noWrap
+       component="a"
+       href=""
+       sx={{
+         mr: 2,
+         display: { xs: "flex", md: "none" },
+         flexGrow: 1,
+         fontFamily: "monospace",
+         fontWeight: 700,
+         letterSpacing: ".3rem",
+         color: "inherit",
+         textDecoration: "none",
+       }}
+     >
+       StackOverFlow
+     </Typography>
+     <Box sx={{ flexGrow: 1,color:'black', display: { xs: "none", md: "flex" } }}>
+       {pages.map((page) => (
+         <Button
+           key={page}
+           onClick={
+             page==="Doubts"?doubts:
 
-                  handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+             handleCloseNavMenu}
+           sx={{ my: 2, color: "black", display: "block" }}
+         >
+           {page}
+         </Button>
+       ))}
+     </Box>
 
-          <Box sx={{ flexGrow: 0,color:'black' }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={
-                    setting === "Logout" ? handleLogout : handleCloseUserMenu
-                  }
-                >
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+     <Box sx={{ flexGrow: 0,color:'black' }}>
+       <Tooltip title="Open settings">
+         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+           <Avatar alt={doubt.user }  />
+         </IconButton>
+       </Tooltip>
+       <Menu
+         sx={{ mt: "45px" }}
+         id="menu-appbar"
+         anchorEl={anchorElUser}
+         anchorOrigin={{
+           vertical: "top",
+           horizontal: "right",
+         }}
+         keepMounted
+         transformOrigin={{
+           vertical: "top",
+           horizontal: "right",
+         }}
+         open={Boolean(anchorElUser)}
+         onClose={handleCloseUserMenu}
+       >
+         {settings.map((setting) => (
+           <MenuItem
+             key={setting}
+             onClick={
+               setting === "Logout" ? handleLogout : handleCloseUserMenu
+             }
+           >
+             <Typography textAlign="center">{setting}</Typography>
+           </MenuItem>
+         ))}
+       </Menu>
+     </Box>
+   </Toolbar>
+ </Container>
+</AppBar>
+   
+    </div>
   );
 }
 export default ResponsiveAppBar;

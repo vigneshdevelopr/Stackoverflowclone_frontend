@@ -1,22 +1,24 @@
 #doubtpage{
-  text-align: center;
+  text-align: justify;
   
 
 }
 #card-sec{
 display: grid;
+/* grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); */
 gap: 1rem;
 }
 #answer-box{
   border: 3px solid #252525;
   min-height: 5cm;
-  min-width: 20cm;
   padding: 1cm;
 }
 
 #doubtpagecard{
   background-color: whitesmoke;
+  min-height: 5cm;
 }
+
 #addanswerbtn{
   background-color: #252525;
   color: orange;
