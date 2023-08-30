@@ -17,7 +17,7 @@ const token = localStorage.getItem('react_token')
 useEffect(()=>{
 const getDoubts = async()=>{
   try {
-    const response = await fetch('https://stackoverflow-clone-backend-pi.vercel.app/questions',{
+    const response = await fetch('https://stackoverflowcloning.onrender.com/questions',{
       method:"GET",
       headers:{
         "content-type":"application/json",
@@ -35,25 +35,25 @@ getDoubts();
 },[])
 
 //====================Get Answer==============================================================
-useEffect(()=>{
-  const getAnswer = async()=>{
-    try {
-      const response = await fetch('https://stackoverflow-clone-backend-pi.vercel.app/answers/:questionId',{
-        method:'GET',
-        headers:{
-          "content-type": "application/json",
-          "x-auth-token": token
-        }
-      })
-      const data = await response.json()
-      setAnswer(data);
-      console.log(data);
-    } catch (error) {
-     console.log(error.message); 
-    }
-  }
-  getAnswer();
-},[])
+// useEffect(()=>{
+//   const getAnswer = async()=>{
+//     try {
+//       const response = await fetch(`https://stackoverflowcloning.onrender.com/answers/${questionId}`,{
+//         method:'GET',
+//         headers:{
+//           "content-type": "application/json",
+//           "x-auth-token": token
+//         }
+//       })
+//       const data = await response.json()
+//       setAnswer(data);
+//       console.log(data);
+//     } catch (error) {
+//      console.log(error.message); 
+//     }
+//   }
+//   getAnswer();
+// },[])
 
 
   //==================================================================================

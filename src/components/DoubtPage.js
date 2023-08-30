@@ -13,8 +13,8 @@ import { useHistory } from "react-router-dom";
 import Base from "../Base/base";
 
 function DoubtPage({ doubt, setDoubt }) {
-  console.log(doubt)
 
+  console.log(doubt);
 
   const history = useHistory();
   const bull = (
@@ -27,10 +27,7 @@ function DoubtPage({ doubt, setDoubt }) {
   );
   const style = {
     backgroundColor: "#252525",
-    
-
   };
- 
 
   return (
     <div>
@@ -46,38 +43,44 @@ function DoubtPage({ doubt, setDoubt }) {
               >
                 Ask Question
               </Button>
-<Grid id="card-sec" >
-              {doubt?.map((data, id) => (
-                
-                <Card id="doubtpagecard" sx={{ minWidth: 275 }} key={data._id}>
-                  
-                  <CardContent>
-                    <Typography
-                      sx={{ fontSize: 14 }}
-                      color="text.secondary"
-                      gutterBottom
-                    >
-                      Topic: {data.topic}
-                    </Typography>
-                    <Typography variant="h5" component="div">
-                      {data.questions}
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                      Question by: {data.user.name}
-                      <br />
-                      created on: {data.date}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button onClick={()=>history.push(`/answers/${id}`)} variant="contained" size="small">
-                      View Answer
-                    </Button>
-                  </CardActions>
-                </Card>
-              ))}
+              <Grid id="card-sec">
+                {doubt?.map((data, id) => (
+                  <Card
+                    id="doubtpagecard"
+                    sx={{ minWidth: 275 }}
+                    key={id}
+                  >
+                    <CardContent>
+                      <Typography
+                        sx={{ fontSize: 14 }}
+                        color="text.secondary"
+                        gutterBottom
+                      >
+                        Topic: {data.topic}
+                      </Typography>
+                      <Typography variant="h5" component="div">
+                        {data.questions}
+                      </Typography>
+                      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Question by: {data.user.name}
+                        <br />
+                        created on: {data.date}
+                      </Typography>
+                    </CardContent>
+
+                    <CardActions>
+                      <Button
+                        onClick={() => history.push(`/answers/${data._id}`)}
+                        variant="contained"
+                        size="small"
+                      >
+                        View Answer
+                      </Button>
+                    </CardActions>
+                  </Card>
+                ))}
               </Grid>
             </div>
-            
           </Container>
         </div>
       </Base>

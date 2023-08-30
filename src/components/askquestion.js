@@ -33,7 +33,7 @@ function Askquestion({doubt, setDoubt}) {
         topic,
         questions,
       }
-    const response = await fetch("https://stackoverflow-clone-backend-pi.vercel.app/questions",
+    const response = await fetch("https://stackoverflowcloning.onrender.com/questions",
       {
         method: "POST",
         body: JSON.stringify(newData),
@@ -48,12 +48,13 @@ function Askquestion({doubt, setDoubt}) {
       
       console.log(data);
       setDoubt([...doubt, data])
+      
       setValues({
         ...values, 
         topic : "",
         questions :""
       })
-      history.push("/doubts");
+      // history.push("/doubts");
     
       
     } catch (error) {
@@ -84,21 +85,24 @@ function Askquestion({doubt, setDoubt}) {
           value={topic}
           onChange={handleChange("topic")}
         /><br/>
+       
+       <div id="answer-sec">
         <TextareaAutosize
-          id='answer-box'
-          label="Questions"
-          name='questions'
-          value={questions}
-          onChange={handleChange("questions")}
-        /><br/>
-        <Button 
-        type="submit"
-        onClick={AddQuestion}
-        variant="contained"
-        sx={{ mt: 3, mb: 2 }}
-        >
-Add
+        name='questions'
+        value={questions}
+        onChange={handleChange("questions")}
+          placeholder="Write Your Question Here !"
+          id="answer-box"
+        />
+        <Button type="submit"
+        onClick={AddQuestion} variant="contained" id="addanswerbtn">
+          Add Your Question Here
         </Button>
+      </div>
+       
+       
+      
+
 
 
 

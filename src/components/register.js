@@ -65,7 +65,7 @@ export default function SignUp() {
         email,
         password,
       };
-      const response = await fetch("https://stackoverflow-clone-backend-pi.vercel.app/user/signup", {
+      const response = await fetch("https://stackoverflowcloning.onrender.com/user/signup", {
         method: "POST",
         body: JSON.stringify(newData),
 
@@ -183,7 +183,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

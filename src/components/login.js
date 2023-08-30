@@ -13,6 +13,35 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useHistory } from "react-router-dom";
+import { styled } from "styled-components";
+
+
+const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+const Spinner = styled.div`
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+
+const LoadingSpinner = () => (
+  <SpinnerContainer>
+    <Spinner />
+  </SpinnerContainer>
+);
 
 function Copyright(props) {
   return (
@@ -35,6 +64,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
+  const[loading,setLoading]=useState(false)
+
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -50,11 +81,13 @@ export default function SignInSide() {
   const loginUser = async (event) => {
     event.preventDefault();
     try {
+      setLoading(true);
+
       const newData = {
         email,
         password,
       };
-      const response = await fetch("https://stackoverflow-clone-backend-pi.vercel.app/user/login", {
+      const response = await fetch("https://stackoverflowcloning.onrender.com/user/login", {
         method: "POST",
         body: JSON.stringify(newData),
 
@@ -80,6 +113,8 @@ export default function SignInSide() {
       }
     } catch (error) {
       console.log(error);
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -97,7 +132,9 @@ export default function SignInSide() {
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
-        <Grid
+        {loading?(<LoadingSpinner />):(
+<>
+          <Grid
           item
           xs={false}
           sm={4}
@@ -107,11 +144,11 @@ export default function SignInSide() {
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-            backgroundSize:"cover",
-            backgroundPosition: "center",
-          }}
+              ? t.palette.grey[50]
+              : t.palette.grey[900],
+              backgroundSize:"cover",
+              backgroundPosition: "center",
+            }}
         />
         <Grid style={{backgroundColor:'rgb(227, 182, 110)'}} item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
@@ -184,7 +221,7 @@ export default function SignInSide() {
                     style={{ cursor: "pointer" }}
                     onClick={() => history.push("/signup")}
                     variant="body2"
-                  >
+                    >
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
@@ -193,7 +230,11 @@ export default function SignInSide() {
             </Box>
           </Box>
         </Grid>
+        </>
+
+)}
       </Grid>
+        
     </ThemeProvider>
   );
 }
