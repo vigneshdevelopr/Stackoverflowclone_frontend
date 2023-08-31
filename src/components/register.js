@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useHistory } from "react-router-dom";
+import Loading from "./Spinner";
 
 function Copyright(props) {
   const history = useHistory();
@@ -42,6 +43,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const[load,setLoad]=useState(false)
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -60,6 +62,7 @@ export default function SignUp() {
   const AddUser = async (event) => {
     event.preventDefault();
     try {
+      setLoad(true)
       const newData = {
         name,
         email,
@@ -85,6 +88,8 @@ export default function SignUp() {
       alert("Successfully added");
     } catch (error) {
       console.log(error);
+    }finally{
+      setLoad(false)
     }
   };
 
@@ -103,6 +108,8 @@ export default function SignUp() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        {load?(<Loading />):(
+<>
         <Box
           sx={{
             marginTop: 8,
@@ -191,6 +198,8 @@ export default function SignUp() {
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
+        </>
+        )}
       </Container>
     </ThemeProvider>
   );

@@ -14,34 +14,10 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useHistory } from "react-router-dom";
 import { styled } from "styled-components";
+import Loading from "./Spinner";
 
 
-const SpinnerContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
 
-const Spinner = styled.div`
-  border: 5px solid rgba(0, 0, 0, 0.1);
-  border-top: 5px solid #fff;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 2s linear infinite;
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-`;
-
-const LoadingSpinner = () => (
-  <SpinnerContainer>
-    <Spinner />
-  </SpinnerContainer>
-);
 
 function Copyright(props) {
   return (
@@ -132,7 +108,7 @@ export default function SignInSide() {
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
-        {loading?(<LoadingSpinner />):(
+        {loading?(<Loading />):(
 <>
           <Grid
           item
