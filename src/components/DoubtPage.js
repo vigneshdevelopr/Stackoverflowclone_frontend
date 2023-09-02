@@ -65,8 +65,8 @@ function DoubtPage({ doubt, setDoubt }) {
                         {data.questions}
                       </Typography>
                       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        {/* Question by: {data.user.name}
-                        <br /> */}
+                        Question by: {data.user.name}
+                        <br />
                         created on: {data.date}
                       </Typography>
                     </CardContent>
