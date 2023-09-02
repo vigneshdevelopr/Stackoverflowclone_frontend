@@ -2,8 +2,10 @@ import { Box, Button, TextareaAutosize, TextField } from '@mui/material';
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import Base from '../Base/base';
+import Loading from './Spinner';
 
 function Askquestion({doubt, setDoubt}) {
+  const[loading,setLoading]=useState(false)
     const [values, setValues] = useState({
         topic : "",
         questions :""
@@ -23,12 +25,18 @@ function Askquestion({doubt, setDoubt}) {
     setValues({...values, [name]:value})
  }
 
+ const Reloading =async() =>{
+window.location.reload();
+history.push('/doubts')
+ }
+
 
   //Add the data
 
   const AddQuestion = async (event) => {
     event.preventDefault();
     try {
+      setLoading(true)
       const newData = {
         topic,
         questions,
@@ -47,29 +55,31 @@ function Askquestion({doubt, setDoubt}) {
     const data = await response.json();
       
       console.log(data);
-      setDoubt([...doubt, data])
+      await setDoubt([...doubt, data])
       
       setValues({
         ...values, 
         topic : "",
         questions :""
       })
-      // history.push("/doubts");
+      await Reloading()
+      await history.push('/doubts')
+
     
       
     } catch (error) {
       console.log(error)
+    }finally{
+      setLoading(false)
     }
-    
-    
-    
-       
-      };
+};
 
   return (
     <div>
         <Base>
- <Box
+        <div>
+          {loading?(<Loading />):(
+            <Box
       component="form"
       sx={{
         '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -107,6 +117,9 @@ function Askquestion({doubt, setDoubt}) {
 
 
     </Box>
+          )}
+        </div>
+ 
     </Base>
 
     </div>

@@ -57,7 +57,7 @@ export default function SignInSide() {
   const loginUser = async (event) => {
     event.preventDefault();
     try {
-      setLoading(true);
+      // setLoading(true);
 
       const newData = {
         email,
@@ -90,7 +90,7 @@ export default function SignInSide() {
     } catch (error) {
       console.log(error);
     } finally{
-      setLoading(false)
+      // setLoading(false)
     }
   };
 
@@ -108,7 +108,7 @@ export default function SignInSide() {
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
-        {loading?(<Loading />):(
+        {/* {loading?(<Loading />):( */}
 <>
           <Grid
           item
@@ -208,7 +208,7 @@ export default function SignInSide() {
         </Grid>
         </>
 
-)}
+{/* )} */}
       </Grid>
         
     </ThemeProvider>

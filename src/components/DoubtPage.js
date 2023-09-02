@@ -15,6 +15,8 @@ import Base from "../Base/base";
 function DoubtPage({ doubt, setDoubt }) {
 
   console.log(doubt);
+  console.log(doubt.user)
+  
 
   const history = useHistory();
   const bull = (
@@ -45,6 +47,7 @@ function DoubtPage({ doubt, setDoubt }) {
               </Button>
               <Grid id="card-sec">
                 {doubt?.map((data, id) => (
+                  
                   <Card
                     id="doubtpagecard"
                     sx={{ minWidth: 275 }}
@@ -62,8 +65,8 @@ function DoubtPage({ doubt, setDoubt }) {
                         {data.questions}
                       </Typography>
                       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        Question by: {data.user.name}
-                        <br />
+                        {/* Question by: {data.user.name}
+                        <br /> */}
                         created on: {data.date}
                       </Typography>
                     </CardContent>
