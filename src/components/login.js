@@ -63,7 +63,7 @@ export default function SignInSide() {
         email,
         password,
       };
-      const response = await fetch("https://stackoverflowcloning.onrender.com/user/login", {
+      const response = await fetch("http://localhost:3002/user/login", {
         method: "POST",
         body: JSON.stringify(newData),
 
@@ -74,19 +74,22 @@ export default function SignInSide() {
 
       const data = await response.json();
       console.log(data);
-      if (data.token) {
-        localStorage.setItem("react_token", data.token);
-        localStorage.setItem("email", data.email);
+      
         console.log(data);
-        setValues({
-          ...values,
-          email: "",
-          password: "",
-        });
-        history.push("/doubts");
-      } else {
+       
+       await history.push("/doubts");
+window.location.reload();
+
+       localStorage.setItem("react_token", data.token);
+
+
+       setValues({
+        ...values,
+        email: "",
+        password: "",
+      });
         alert(data.message);
-      }
+      
     } catch (error) {
       console.log(error);
     } finally{
