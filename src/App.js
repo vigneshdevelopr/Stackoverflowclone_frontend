@@ -19,7 +19,7 @@ useEffect(()=>{
 const getDoubts = async()=>{
   try {
     setLoader(true)
-    const response = await fetch('https://stackoverflowcloning.onrender.com/questions',{
+    const response = await fetch('https://stackoverflowserver.up.railway.app/questions',{
       method:"GET",
       headers:{
         "content-type":"application/json",

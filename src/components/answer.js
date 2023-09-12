@@ -27,7 +27,7 @@ function Answers({ doubt, setDoubt }) {
 
         if (question) {
           const response = await fetch(
-            `https://stackoverflowcloning.onrender.com/answers/${id}`,
+            `https://stackoverflowserver.up.railway.app/answers/${id}`,
             {
               method: "GET",
               headers: {
@@ -65,7 +65,7 @@ function Answers({ doubt, setDoubt }) {
       };
 
       const response = await fetch(
-        `https://stackoverflowcloning.onrender.com/answers/${id}`,
+        `https://stackoverflowserver.up.railway.app/answers/${id}`,
         {
           method: "POST",
           body: JSON.stringify(newData),

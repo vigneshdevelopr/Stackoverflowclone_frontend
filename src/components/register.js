@@ -68,7 +68,7 @@ export default function SignUp() {
         email,
         password,
       };
-      const response = await fetch("https://stackoverflowcloning.onrender.com/user/signup", {
+      const response = await fetch("https://stackoverflowserver.up.railway.app/user/signup", {
         method: "POST",
         body: JSON.stringify(newData),
 
