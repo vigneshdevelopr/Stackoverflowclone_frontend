@@ -68,7 +68,7 @@ export default function SignUp() {
         email,
         password,
       };
-      const response = await fetch("https://stackoverflowserver.up.railway.app/user/signup", {
+      const response = await fetch("https://stackoverflow-clone-backend-pi.vercel.app/user/signup", {
         method: "POST",
         body: JSON.stringify(newData),
 
