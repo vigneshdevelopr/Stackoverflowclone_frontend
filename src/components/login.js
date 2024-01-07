@@ -63,7 +63,7 @@ export default function SignInSide() {
         email,
         password,
       };
-      const response = await fetch("https://stackoverflowserver.up.railway.app/user/login", {
+      const response = await fetch("https://stackoverflow-clone-backend-pi.vercel.app/user/login", {
         method: "POST",
         body: JSON.stringify(newData),
 
