@@ -27,7 +27,7 @@ const token = localStorage.getItem('react_token')
 useEffect(()=>{
   const getDoubts = async()=>{
     try {
-      const response = await fetch('https://stackoverflowserver.up.railway.app/questions',{
+      const response = await fetch('https://stackoverflow-clone-backend-pi.vercel.app/questions',{
         method:"GET",
         headers:{
           "content-type":"application/json",
