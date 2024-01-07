@@ -41,7 +41,7 @@ history.push('/doubts')
         topic,
         questions,
       }
-    const response = await fetch("https://stackoverflowserver.up.railway.app/questions",
+    const response = await fetch("https://stackoverflow-clone-backend-pi.vercel.app/questions",
       {
         method: "POST",
         body: JSON.stringify(newData),
