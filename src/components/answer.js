@@ -27,7 +27,7 @@ function Answers({ doubt, setDoubt }) {
 
         if (question) {
           const response = await fetch(
-            `https://stackoverflowserver.up.railway.app/answers/${id}`,
+            `https://stackoverflow-clone-backend-pi.vercel.app/answers/${id}`,
             {
               method: "GET",
               headers: {
@@ -65,7 +65,7 @@ function Answers({ doubt, setDoubt }) {
       };
 
       const response = await fetch(
-        `https://stackoverflowserver.up.railway.app/answers/${id}`,
+        `https://stackoverflow-clone-backend-pi.vercel.app/answers/${id}`,
         {
           method: "POST",
           body: JSON.stringify(newData),
